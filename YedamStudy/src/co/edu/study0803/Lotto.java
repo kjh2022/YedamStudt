@@ -2,6 +2,22 @@ package co.edu.study0803;
 
 public class Lotto {
 
+	private int[] lottoNo;
+	private String name;
+	public int[] getLottoNo() {
+		return lottoNo;
+	}
+	public void setLottoNo(int[] lottoNo) {
+		this.lottoNo = lottoNo;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
 }
 /*
 while (run) {
