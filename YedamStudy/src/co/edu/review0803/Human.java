@@ -1,4 +1,4 @@
-package com.yedam.review;
+package co.edu.review0803;
 
 public class Human {
 	/*1) Human 클래스를 정의한다.

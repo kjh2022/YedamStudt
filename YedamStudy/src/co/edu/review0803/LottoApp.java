@@ -1,5 +1,5 @@
-package com.yedam.review;
-
+package co.edu.review0803;
+//컴퓨터의 사고 이해
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,22 +11,23 @@ public class LottoApp {
 	int menu = 0;
 
 	List<int[]> list = new ArrayList<>();
-
+//	로또 앱이라는 생성자에 run()이라는 메소드를 실행시키는것
 	public LottoApp() {
 		run();
 	}
-
+//	캡슐화, 정보은닉을 위해서
 	private void run() {
 
 		while (menu != 99) {
-			menuInfo();
+
+			menuInfo();	//메뉴를 출력하는 메소드 호출
 			menu = Integer.parseInt(sc.nextLine());
 			switch (menu) {
 			case 1:
-				makeLotto();
+				makeLotto(); //로또생성
 				break;
 			case 2:
-				showInfo();
+				showInfo(); //로또번호 조회
 				break;
 
 			case 99:
@@ -51,7 +52,7 @@ public class LottoApp {
 		money = Integer.parseInt(sc.nextLine());
 
 		for (int i = 0; i < (money / 1000); i++) {
-			list.add(makeNumber());
+			list.add(makeNumber()); //리스트에 완성된 로또번호 넣기, makeNumber이라는 메소드에서 로또번호 생성
 		}
 		
 		System.out.println("번호 출력 완료\n");
@@ -72,7 +73,7 @@ public class LottoApp {
 			System.out.println();
 			//&&, &
 			               // i=0, i % 5 == 0
-			if ((i+1) % 5 == 0) {
+			if ((i+1) % 5 == 0) { //리스트의 길이를 받아와서 5개씩 잘라 쓰는것
 				System.out.println("-------------------------------------");
 			}
 		}

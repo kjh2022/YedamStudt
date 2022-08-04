@@ -1,4 +1,4 @@
-package com.yedam.review;
+package co.edu.review0803;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -7,9 +7,9 @@ public class StringApiQuiz {
 //			ex)991212 - 1924~2073~~살 남, 981212-1578987, 010228 - 275475~~살. 여, 0000815- 38574 ~~살, 남
 //	올해 기준으로 100년의 값이 넘어간 경우 제외,220509  5월 9일 x 2022년 5월 9일 ㅇㅋ
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+		Scanner scan = new Scanner(System.in);
 
-		String num = sc.nextLine();
+		String num = scan.nextLine();
 		String yearStr = num.substring(0, 2);
 		int yearInt = 0;
 

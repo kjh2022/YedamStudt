@@ -1,4 +1,4 @@
-package com.yedam.review;
+package co.edu.review0803;
 
 public class StandardWeightInfo extends Human {
 	/*2) StandardWeightInfo 클래스를 정의한다.

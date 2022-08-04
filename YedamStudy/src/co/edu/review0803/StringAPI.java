@@ -1,4 +1,4 @@
-package com.yedam.review;
+package co.edu.review0803;
 
 public class StringAPI {
 	public static void main(String[] args) {
