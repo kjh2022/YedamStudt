@@ -17,7 +17,9 @@ public class MemberManagement extends DAO {
 //	단 하나의 객체를 사용할 수 있도록 메소드 생성
 	public static MemberManagement getInstance() {
 		if (mm == null) {
-			return new MemberManagement();
+			mm = new MemberManagement();
+			return mm;
+//			return new MemberManagement();
 		} else {
 			return mm;
 		}
