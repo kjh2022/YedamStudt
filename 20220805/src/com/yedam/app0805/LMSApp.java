@@ -2,8 +2,6 @@ package com.yedam.app0805;
 
 import java.util.Scanner;
 
-import javax.swing.text.StyleContext.SmallAttributeSet;
-
 import com.yedam.member0805.MemberDTO;
 import com.yedam.member0805.MemberService;
 import com.yedam.student0805.StudentDTO;
@@ -87,7 +85,6 @@ public class LMSApp {
 					} else {
 						System.out.println("정보가 없습니다.");
 					}
-
 //					학생 정보 수정
 				} else if (menu == 3) {
 					ss.updateTel();
@@ -103,7 +100,6 @@ public class LMSApp {
 					std = ss.getStudent(std);
 					System.out.println(std.toString());
 				}
-
 			}
 		}
 	}

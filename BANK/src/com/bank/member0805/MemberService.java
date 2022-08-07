@@ -40,7 +40,7 @@ public class MemberService {
 		System.out.println("고객 이름> ");
 		String name = sc.nextLine();
 		
-		member.setAccountId(id);
+		member.setMemberId(id);
 		member.setMemberPw(pw);
 		member.setMemberName(name);
 		member.setRole("0");
