@@ -4,9 +4,35 @@ import java.sql.Date;
 
 public class Loan {
 	private String loanId;
-	private String membeId;
+	private String memberId;
 	private Date loanDate;
 	private String state;
+	private int loanMoney;
+	private String memberName;
+
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
+	public int getLoanMoney() {
+		return loanMoney;
+	}
+
+	public void setLoanMoney(int loanMoney) {
+		this.loanMoney = loanMoney;
+	}
 
 	public String getLoanId() {
 		return loanId;
@@ -14,14 +40,6 @@ public class Loan {
 
 	public void setLoanId(String loanId) {
 		this.loanId = loanId;
-	}
-
-	public String getMembeId() {
-		return membeId;
-	}
-
-	public void setMembeId(String membeId) {
-		this.membeId = membeId;
 	}
 
 	public Date getLoanDate() {

@@ -1,6 +1,9 @@
 package com.bank.account0805;
 
+import java.util.List;
 import java.util.Scanner;
+
+import com.bank.member0805.MemberService;
 
 /*1.계좌 개설 2.입금&출금 4.계좌 해지 5.계좌 이체*/
 public class AccountService {
@@ -17,6 +20,14 @@ public class AccountService {
 
 		ac.setAccountId(accountId);
 		ac.setMemberId(customId);
+		
+//		0808 계좌 등록 메소드 추가
+		int result = AccountManage.getInstance().insertAccount(ac);
+		if(result == 1) {
+			System.out.println("계좌 등록 완료");
+		} else {
+			System.out.println("계좌 등록 실패");
+		}
 	}
 
 //	2.입출금
@@ -39,7 +50,7 @@ public class AccountService {
 		int money = Integer.parseInt(sc.nextLine());
 
 		account.setAccountId(accountId);
-		account.setBlance(money);
+		account.setBalance(money);
 
 //		싱글톤 불러오기
 		int result = AccountManage.getInstance().updateMoney(account, cmd);
@@ -85,6 +96,18 @@ public class AccountService {
 		
 		AccountManage.getInstance().transferMoney(toAccountId, FromAccounId, balance);
 	}
-	
+//	계좌 조회 매니지에 만들었으니 서비스에 보이게
+	public void getAccount() {
+		List<Account> list = //
+				AccountManage.getInstance().getAccountList(MemberService.memberInfo.getMemberId());
+		System.out.println(MemberService.memberInfo.getMemberName() + "님의 계좌 정보");
+		
+		for (Account account : list) {
+			System.out.println("계좌 ID> " + account.getAccountId());
+			System.out.println("계좌 잔고> " + account.getBalance());
+			System.out.println("생성일> " + account.getCredate());
+			
+		}
+	}
 	
 }

@@ -38,8 +38,8 @@ public class MemberService {
 		System.out.println("고객 PW> ");
 		String pw = sc.nextLine();
 		System.out.println("고객 이름> ");
+
 		String name = sc.nextLine();
-		
 		member.setMemberId(id);
 		member.setMemberPw(pw);
 		member.setMemberName(name);

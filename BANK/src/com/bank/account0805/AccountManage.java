@@ -1,5 +1,8 @@
 package com.bank.account0805;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.bamk.common0805.DAO;
 
 public class AccountManage extends DAO {
@@ -40,7 +43,8 @@ public class AccountManage extends DAO {
 		try {
 			conn();
 			/*
-			 * 입출금 ㅡ> update 계산한 데이터를 바로 넣어주면 된다 다른 연산 필요없ㄱ이 가능함 현재 잔고를 가져오는 query문이 필요해짐
+			 * 0808 현재 잔고를 먼저 확인해야 입출금이 가능 입출금 ㅡ> update 계산한 데이터를 바로 넣어주면 된다 다른 연산 필요없이 가능함
+			 * 현재 잔고를 가져오는 query문이 필요해짐
 			 */
 			String sql2 = "SELECT balance FROM account WHERE account_id";
 			pstmt = conn.prepareStatement(sql2);
@@ -57,21 +61,21 @@ public class AccountManage extends DAO {
 				// balance =>현재 잔고
 				// account.getBalance() =>새로 입금하고자 하는 금액
 				// balance + account.getBlance() => 입금한 금액
-				account.setBlance(balance + account.getBlance());
+				account.setBalance(balance + account.getBalance());
 
 				String sql = "UPDATE account SET balance = ? WHERE account_id = ?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, account.getBlance());
+				pstmt.setInt(1, account.getBalance());
 				pstmt.setString(2, account.getAccountId());
 				result = pstmt.executeUpdate();
 
 			} else if (cmd == 2) { // 0일 경우도 발생할 수 있기때문에 >= 으로 맞춤
-				if (balance - account.getBlance() >= 0) {
-					account.setBlance(balance - account.getBlance());
+				if (balance - account.getBalance() >= 0) {
+					account.setBalance(balance - account.getBalance());
 
 					String sql = "UPDATE account SET balance = ? WHERE account_id = ?";
 					pstmt = conn.prepareStatement(sql);
-					pstmt.setInt(1, account.getBlance());
+					pstmt.setInt(1, account.getBalance());
 					pstmt.setString(2, account.getAccountId());
 
 					result = pstmt.executeUpdate();
@@ -113,7 +117,7 @@ public class AccountManage extends DAO {
 		try {
 			conn();
 
-			// 보내는 사람의 계좌에는 돈을 출금 해주는 query 필요
+			// 보내는 사람의 계좌에는 돈을 출금 해주는 query 필요 돈을 먼저 빼야 받을 수 있으니까
 			String sql2 = "UPDATE account SET balance = balance - ? WHERE account_id = ?";
 			pstmt = conn.prepareStatement(sql2);
 			pstmt.setInt(1, balance);
@@ -123,7 +127,7 @@ public class AccountManage extends DAO {
 			if (result == 1) {
 				System.out.println("정상 출금");
 
-				// 받는 사람의 계좌에 돈을 넣어주는 sql문
+				// 받는 사람의 계좌에 돈을 넣어주는 sql문 받는 사람의 돈이 증가되게끔 하기
 				String sql = "UPDATE account SET balance = balance + ? WHERE account_id = ?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, balance);
@@ -143,5 +147,36 @@ public class AccountManage extends DAO {
 		} finally {
 			disconnect();
 		}
+	}
+
+//	계좌 조회
+	public List<Account> getAccountList(String memberId) {
+		List<Account> list = new ArrayList<>();
+		Account account = null;
+
+		try {
+			conn();
+			String sql = "SELECT * FROM account WHERE member_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				account = new Account();
+				account.setAccountId(rs.getString("account_id"));
+				account.setMemberId(rs.getString("member_id"));
+				account.setCredate(rs.getDate("creDate"));
+				account.setBalance(rs.getInt("balabce"));
+
+				list.add(account);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+
+		return list;
 	}
 }

@@ -29,6 +29,8 @@ public class Application {
 			break;
 		case 2:
 			// 고민중
+			ms.logout();
+			System.out.println("로그아웃 되었습니다.");
 			break;
 
 		}

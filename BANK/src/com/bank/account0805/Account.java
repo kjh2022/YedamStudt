@@ -6,8 +6,8 @@ import java.sql.Date;
 public class Account {
 	private String accountId;
 	private String memberId;
-	private int blance;
 	private Date credate;
+	private int balance;
 
 	public String getAccountId() {
 		return accountId;
@@ -25,12 +25,14 @@ public class Account {
 		this.memberId = memberId;
 	}
 
-	public int getBlance() {
-		return blance;
+	
+
+	public int getBalance() {
+		return balance;
 	}
 
-	public void setBlance(int blance) {
-		this.blance = blance;
+	public void setBalance(int balance) {
+		this.balance = balance;
 	}
 
 	public Date getCredate() {
