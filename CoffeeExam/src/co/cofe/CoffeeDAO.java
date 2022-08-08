@@ -121,7 +121,7 @@ public class CoffeeDAO extends DAO {
 		int result = 0;
 		try {
 			conn();
-			String sql = "UPDATE coffee SET coffee_sales = ? where coffee_menu = ?";
+			String sql = "UPDATE coffee SET coffee_sales = coffee_sales+1 where coffee_menu = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, coffee.getCoffeeSales());
 			pstmt.setString(2, coffee.getCoffeeMenu());
