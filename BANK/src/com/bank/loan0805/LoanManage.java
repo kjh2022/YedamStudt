@@ -31,7 +31,7 @@ public class LoanManage extends DAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, loan.getLoanId());
 			pstmt.setString(2, loan.getMemberId());
-			pstmt.setDate(3, loan.getLoanDate());
+			pstmt.setString(3, loan.getLoanDate());
 			pstmt.setString(4, loan.getState());
 			pstmt.setInt(5, loan.getLoanMoney());
 
@@ -51,6 +51,16 @@ public class LoanManage extends DAO {
 		int result = 0;
 		try {
 			conn();
+//			String sql2 = "SELECT loan_money FROM loan WHERE loan_id = ?";
+//			pstmt = conn.prepareStatement(sql2);
+//			pstmt.setString(1, loan.getLoanId());
+////			대출금보다 더 많이 상환할 수 없게 만들기
+//			rs = pstmt.executeQuery();
+//			int lMoney = 0;
+//			if(rs.next()) {
+//				lMoney = rs.getInt("loan_money");
+//			}
+			
 			String sql = "UPDATE loan SET loan_money = loan_money - ? WHERE loan_id = ?";
 			pstmt = conn.prepareStatement(sql);
 
@@ -58,7 +68,7 @@ public class LoanManage extends DAO {
 			pstmt.setString(2, loan.getLoanId());
 
 			result = pstmt.executeUpdate();
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -101,8 +111,8 @@ public class LoanManage extends DAO {
 			String sql = "SELECT b.member_name member_name , l.loan_id loan_id," //
 					+ " l.loan_money loan_money, l.loan_date loan_date\r\n" //
 					+ "FROM bankmember b join loan l\r\n" //
-					+ "ON b.member_id = l.member_id;\r\n" //
-					+ "WHERE b.member_id = '1'\r\n"; //
+					+ "ON b.member_id = l.member_id\r\n" //
+					+ "WHERE b.member_id = ?"; //
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberId);
 
@@ -115,7 +125,7 @@ public class LoanManage extends DAO {
 				loan.setMemberId(rs.getString("member_name"));
 				loan.setLoanId(rs.getString("loan_id"));
 				loan.setLoanMoney(rs.getInt("loan_money"));
-				loan.setLoanDate(rs.getDate("loan_daye"));
+				loan.setLoanDate(rs.getString("loan_date"));
 
 				list.add(loan);
 			}

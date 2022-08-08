@@ -22,7 +22,7 @@ public class AccountManage extends DAO {
 		int result = 0;
 		try {
 			conn();
-			String sql = "insert into account (account_id, member_id)\r\n" + "values ('?', '?')";
+			String sql = "insert into account (account_id, member_id)\r\n" + "values (?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, account.getAccountId());
 			pstmt.setString(2, account.getMemberId());
@@ -46,9 +46,10 @@ public class AccountManage extends DAO {
 			 * 0808 현재 잔고를 먼저 확인해야 입출금이 가능 입출금 ㅡ> update 계산한 데이터를 바로 넣어주면 된다 다른 연산 필요없이 가능함
 			 * 현재 잔고를 가져오는 query문이 필요해짐
 			 */
-			String sql2 = "SELECT balance FROM account WHERE account_id";
+			String sql2 = "SELECT balance FROM account WHERE account_id = ?";
 			pstmt = conn.prepareStatement(sql2);
 			pstmt.setString(1, account.getAccountId());
+			
 			rs = pstmt.executeQuery();
 
 			int balance = 0;
@@ -167,7 +168,7 @@ public class AccountManage extends DAO {
 				account.setAccountId(rs.getString("account_id"));
 				account.setMemberId(rs.getString("member_id"));
 				account.setCredate(rs.getDate("creDate"));
-				account.setBalance(rs.getInt("balabce"));
+				account.setBalance(rs.getInt("balance"));
 
 				list.add(account);
 			}

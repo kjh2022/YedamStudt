@@ -41,12 +41,17 @@ public class ManageMent {
 					as.deleteAccount();
 				} // 6.대출
 				else if (menuNo == 6) {
+					System.out.println("1.대출 승인 | 2.대출 정보(상태) 변경");
 					int menu = Integer.parseInt(sc.nextLine());
+
 					if (menu == 1) {
 						ls.insertLoan(); // 대출 승인
 					} else if (menu == 2) {
 						ls.updateLoan(); // 대출 상태 변경
 					}
+				} else if (menuNo == 7) {
+					ms.logout();
+					return;
 				}
 
 			} // 일반 고객 메뉴
@@ -64,12 +69,15 @@ public class ManageMent {
 					int menu = Integer.parseInt(sc.nextLine());
 					// 상환
 					if (menu == 1) {
-						ls.updateLoan();
+						ls.updateMoney();
 
 					} // 대출 조회
 					else if (menu == 2) {
 						ls.loanInfo();
 					}
+				} else if (menuNo == 5) {
+					ms.logout();
+					return;
 				}
 			}
 		}
@@ -79,12 +87,13 @@ public class ManageMent {
 	private void menuInfo() {
 		// role == 1, 은행원(관리자) 메뉴
 		if (MemberService.memberInfo.getRole().equals("1")) {
+			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 			System.out.println("은행원 업무입니다.");
-			System.out.println("1.고객 등록 | 2.계좌 개설 | 3.입금 및 출금 | 4.계좌 이체" //
-					+ "| 5.계좌 해지 | 6.대출");
+			System.out.println("1.고객 등록 | 2.계좌 개설 | 3.입금 및 출금 | 4.계좌 이체 " //
+					+ "| 5.계좌 해지 | 6.대출 | 7.로그아웃");
 			// role == 0, 일반 사용자
 		} else if (MemberService.memberInfo.getRole().equals("0")) {
-			System.out.println("1.계좌 조회 | 2.입, 출금 | 3.계좌 이체 | 4.대출");
+			System.out.println("1.계좌 조회 | 2.입, 출금 | 3.계좌 이체 | 4.대출 | 5.로그아웃");
 
 		}
 		System.out.println("입력> ");

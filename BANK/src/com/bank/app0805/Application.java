@@ -23,16 +23,13 @@ public class Application {
 			ms.doLogin();
 			if (MemberService.memberInfo != null) {
 				new ManageMent();
-
 			}
 
 			break;
 		case 2:
 			// 고민중
-			ms.logout();
-			System.out.println("로그아웃 되었습니다.");
+			System.out.println("종료합니다.");
 			break;
-
 		}
 	}
 }

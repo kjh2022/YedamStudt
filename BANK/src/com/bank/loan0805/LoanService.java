@@ -30,17 +30,6 @@ public class LoanService {
 		System.out.println("대출 날짜> ");
 		String startDay = sc.nextLine();
 
-		Date date = null;
-//		String ㅡ> () ㅡ> Date 
-//		String ㅡ> DateFromat ㅡ> Date
-//		DateFormat ㅡ> SimpleDateFormat(날짜 형태)
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-		try {
-			date = (Date) dateFormat.parse(startDay);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 		System.out.println("대출 상태> ");
 		String state = sc.nextLine();
 
@@ -48,7 +37,7 @@ public class LoanService {
 		loan.setMemberId(memberId);
 		loan.setLoanMoney(loanMoney);
 		loan.setState(state);
-		loan.setLoanDate(date);
+		loan.setLoanDate(startDay);
 
 		int result = LoanManage.getInstance().insertLoan(loan);
 
@@ -65,7 +54,7 @@ public class LoanService {
 		Loan loan = new Loan();
 		System.out.println("대출 ID> ");
 		String loanId = sc.nextLine();
-		System.out.println("상대 변경> ");
+		System.out.println("상태 변경> ");
 		String state = sc.nextLine();
 
 		loan.setLoanId(loanId);
@@ -90,7 +79,7 @@ public class LoanService {
 
 		loan.setLoanId(loanId);
 		loan.setLoanMoney(loanMoney);
-
+		
 		int result = LoanManage.getInstance().updateMoney(loan);
 		if (result == 1) {
 			System.out.println("상환 완료");

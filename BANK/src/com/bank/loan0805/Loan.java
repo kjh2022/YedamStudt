@@ -1,11 +1,17 @@
 package com.bank.loan0805;
 
-import java.sql.Date;
 
 public class Loan {
 	private String loanId;
 	private String memberId;
-	private Date loanDate;
+	private String loanDate;
+	public String getLoanDate() {
+		return loanDate;
+	}
+
+	public void setLoanDate(String loanDate) {
+	}
+
 	private String state;
 	private int loanMoney;
 	private String memberName;
@@ -40,14 +46,6 @@ public class Loan {
 
 	public void setLoanId(String loanId) {
 		this.loanId = loanId;
-	}
-
-	public Date getLoanDate() {
-		return loanDate;
-	}
-
-	public void setLoanDate(Date loanDate) {
-		this.loanDate = loanDate;
 	}
 
 	public String getState() {

@@ -28,6 +28,7 @@ public class MemberService {
 	public void logout() {
 		if(memberInfo != null)
 		memberInfo = null;
+		System.out.println("로그아웃 되었습니다.");
 	}
 	
 //	고객 등록 메소드 만들기 등록이 잘 되는지 확인하기 위해 리턴타입을 int로 한것, 하지만 필요없어져서 int로 변경
@@ -38,8 +39,8 @@ public class MemberService {
 		System.out.println("고객 PW> ");
 		String pw = sc.nextLine();
 		System.out.println("고객 이름> ");
-
 		String name = sc.nextLine();
+		
 		member.setMemberId(id);
 		member.setMemberPw(pw);
 		member.setMemberName(name);
