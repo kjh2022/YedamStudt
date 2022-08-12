@@ -34,7 +34,7 @@ public class CoffeeService {
 			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		}
 	}
-	
+
 //	메뉴 등록
 	public void insertCoffee() {
 		Coffee coffee = new Coffee();
@@ -44,16 +44,16 @@ public class CoffeeService {
 		int coffeePrice = Integer.parseInt(sc.nextLine());
 		System.out.println("설명 입력>");
 		String coffeeExplain = sc.nextLine();
-		
+
 		coffee.setCoffeeMenu(coffeeName);
 		coffee.setCoffeePrice(coffeePrice);
 		coffee.setCoffeeExplain(coffeeExplain);
-		
+
 		int result = CoffeeDAO.getInstance().insertCoffee(coffee);
-		
-		if(result == 1) {
+
+		if (result == 1) {
 			System.out.println("등록 성공");
-		}else {
+		} else {
 			System.out.println("등록 실패");
 		}
 	}
@@ -72,7 +72,6 @@ public class CoffeeService {
 		}
 	}
 
-	
 //	매출
 	public void salesCoffee() {
 		List<Coffee> list = CoffeeDAO.getInstance().getCoffee();
@@ -83,8 +82,8 @@ public class CoffeeService {
 					", 판매 개수 : " + coffee.getCoffeeSales() + //
 					", 판매 금액 : " + coffee.getCoffeePrice());
 			System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-			
-			sum += coffee.getCoffeePrice()*coffee.getCoffeeSales();
+
+			sum += coffee.getCoffeePrice() * coffee.getCoffeeSales();
 		}
 		System.out.println("총 매출액 : " + sum + "원");
 	}
